@@ -1,0 +1,112 @@
+// [ JavaScript Code ] //
+// calling the number buttons from the html file //
+var OneBtn = document.getElementById('calc-one');
+var TwoBtn = document.getElementById('calc-two');
+var ThreeBtn = document.getElementById('calc-three');
+var FourBtn = document.getElementById('calc-four');
+var FiveBtn = document.getElementById('calc-five');
+var SixBtn = document.getElementById('calc-six');
+var SevenBtn = document.getElementById('calc-seven');
+var EightBtn = document.getElementById('calc-eight');
+var NineBtn = document.getElementById('calc-nine');
+var ZeroBtn = document.getElementById('calc-zero');
+var DecimalBtn = document.getElementById('calc-decimal');
+var ClearBtn = document.getElementById('calc-clear');
+var BackspaceBtn = document.getElementById('calc-backspace');
+var DisplayValElement = document.getElementById('calc-display-val');
+
+var DisplayVal = '0';
+var PendingVal;
+var EvalStringArray = [];
+
+var CalcNumBtns = document.getElementsByClassName('calc-btn-num');
+var CalcOperatorBtns = document.getElementsByClassName('calc-btn-operator');
+
+var UpdateDisplayVal = (ClickObj) => {
+    var BtnText = ClickObj.target.innerText;
+
+    if (DisplayVal === '0')
+        DisplayVal = '';
+    DisplayVal += BtnText;
+    DisplayValElement.innerText = DisplayVal;
+}
+// The behavior of the operator buttons //
+var Operator;
+var PerformOperation = (ClickObj) => {
+    var Operator = ClickObj.target.innerText;
+    switch (Operator) {
+        case '+':
+            PendingVal = DisplayVal;
+            DisplayVal = '0';
+            DisplayValElement.innerText = DisplayVal;
+            EvalStringArray.push(PendingVal);
+            EvalStringArray.push('+');
+            break;
+
+        case '-':
+            PendingVal = DisplayVal;
+            DisplayVal = '0';
+            DisplayValElement.innerText = DisplayVal;
+            EvalStringArray.push(PendingVal);
+            EvalStringArray.push('-');
+            break;
+
+        case 'x':
+            PendingVal = DisplayVal;
+            DisplayVal = '0';
+            DisplayValElement.innerText = DisplayVal;
+            EvalStringArray.push(PendingVal);
+            EvalStringArray.push('*');
+            break;
+
+        case '÷':
+            PendingVal = DisplayVal;
+            DisplayVal = '0';
+            DisplayValElement.innerText = DisplayVal;
+            EvalStringArray.push(PendingVal);
+            EvalStringArray.push('/');
+            break;
+
+        case '=':
+            EvalStringArray.push(DisplayVal);
+            var Evaluation = eval(EvalStringArray.join(' '));
+            DisplayVal = Evaluation + '';
+            DisplayValElement.innerText = DisplayVal;
+            EvalStringArray = [];
+            break;
+        default:
+        break;
+    }
+}
+
+for (let i = 0; i < CalcNumBtns.length; i++) {
+    CalcNumBtns[i].addEventListener('click', UpdateDisplayVal, false);
+}
+
+for (let i = 0; i < CalcOperatorBtns.length; i++) {
+    CalcOperatorBtns[i].addEventListener('click', PerformOperation, false);
+}
+// The behavior of the clear button //
+ClearBtn.onclick = () => {
+    DisplayVal = '0';
+    PendingVal = undefined;
+    EvalStringArray = [];
+    DisplayValElement.innerHTML = DisplayVal;
+}
+// The behavior of the backspace button //
+BackspaceBtn.onclick = () => {
+    let LengthOfDisplayVal = DisplayVal.length;
+    DisplayVal = DisplayVal.slice(0, LengthOfDisplayVal - 1);
+
+    if (DisplayVal === '')
+        DisplayVal = '0';
+
+    DisplayValElement.innerText = DisplayVal;
+
+}
+// The behavior of the decimal button //
+DecimalBtn.onclick = () => {
+    if (!DisplayVal.includes('.'))
+        DisplayVal += '.';
+    DisplayValElement.innerText = DisplayVal;
+}
