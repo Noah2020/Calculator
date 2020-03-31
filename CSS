@@ -1,0 +1,80 @@
+/* [ CSS Code ] */
+@import url('https://fonts.googleapis.com/css?family=Roboto:100&display=swap');
+/* The colorful background */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 61.45%),
+            linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 61.45%),
+            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 61.45%);
+                       user-select: none;
+}
+p {
+  font-size: 27px;
+}
+/* The dimensions of the Calculator */
+.calc-btn {
+    background-color: silver;
+    color: black;
+    width: 48px;
+    height: 45px;
+    border: 0.8px solid gray;
+    text-align: center;
+    cursor: pointer;
+    font-size: 32px;
+    font-weight: 100;
+    padding-top: 3px;
+}
+/* the hover effect */
+.calc-btn:hover {
+    background-color:gray;
+}
+/* The layout of the Calculator */
+.row {
+    display: table;
+    table-layout: fixed;
+    width: 200px;
+}
+/* The layout of the Calculator */
+.column {
+  display: table-cell;
+}
+/* The size of the zero button on the Calculator */
+#calc-zero {
+    width: 97.66666667px;
+    border-radius: 0 0 0 7px;
+}
+/* The size of the clear button on the Calculator */
+#calc-clear {
+  width: 98.6666667px;
+}
+/* The display box */
+#calc-display-val {
+  height: 70px; color: white;
+  text-align: right;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  border-top: 1px solid gray;
+  font-size: 48px;
+  background-color: #383838;
+  overflow: hidden;
+  widows: nowrap;
+  padding: 12px;
+  border-radius: 7px 7px 0 0;
+}
+/* The color of the operator buttons */
+.calc-btn-operator {
+  background-color: orange;
+  color: white;
+}
+h1 {
+  text-align: center;
+  margin-top: 50px;
+}
+#calc-equals {
+  border-radius: 0 0 7px 0;
+
+}
+#calc-parent {
+  margin-left: calc(50% - 100px);
+}
+}
